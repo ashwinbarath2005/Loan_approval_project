@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - LoanAI India Decision Support System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-university"></i>
+                    <h1>LoanAI India</h1>
+                </div>
+                <nav class="navigation">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="/about" class="nav-link active">About</a>
+                </nav>
+            </div>
+        </header>
+
+        <!-- About Section -->
+        <section class="about-section">
+            <div class="about-container">
+                <div class="about-header">
+                    <h2>About LoanAI India Decision Support System</h2>
+                    <p>Revolutionizing Indian banking with artificial intelligence and machine learning</p>
+                </div>
+
+                <div class="about-content">
+                    <div class="about-card">
+                        <div class="card-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>AI Technology for Indian Banking</h3>
+                            <p>Our system uses a sophisticated Decision Tree classifier specifically adapted for Indian banking patterns. The model analyzes multiple factors including income in Indian Rupees, credit history, education, employment status, and property location to provide accurate loan approval predictions for the Indian market.</p>
+                        </div>
+                    </div>
+
+                    <div class="about-card">
+                        <div class="card-icon">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>High Accuracy Performance</h3>
+                            <p>With an 89% accuracy rate on test data, our model demonstrates exceptional reliability for Indian loan applications. The system has been trained on 1000+ diverse loan applications with various demographic and financial profiles relevant to Indian banking scenarios.</p>
+                        </div>
+                    </div>
+
+                    <div class="about-card">
+                        <div class="card-icon">
+                            <i class="fas fa-rupee-sign"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>Indian Currency & Standards</h3>
+                            <p>Built specifically for the Indian market with native support for Indian Rupees, flexible loan terms in days, and consideration of Indian banking norms and regulations. The system handles currency conversions and local banking patterns automatically.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Developer Information -->
+                <div class="developer-section">
+                    <h3>About the Developer</h3>
+                    <div class="developer-card">
+                        <div class="developer-info">
+                            <div class="developer-avatar">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <div class="developer-details">
+                                <h4>Ashwinbarath</h4>
+                                <p class="developer-title">Machine Learning Engineer & Full-Stack Developer</p>
+                                <div class="developer-contact">
+                                    <p class="developer-email">
+                                        <i class="fas fa-envelope"></i>
+                                        <a href="mailto:ashwinbarath1959@gmail.com" class="email-link">ashwinbarath1959@gmail.com</a>
+                                    </p>
+                                </div>
+                                <p class="developer-description">
+                                    Passionate about creating AI-powered solutions for real-world problems. Specialized in machine learning, 
+                                    web development, and financial technology. This loan approval system represents the integration of 
+                                    advanced ML algorithms with modern web technologies, specifically designed for the Indian banking sector.
+                                </p>
+                                <div class="developer-skills">
+                                    <span class="skill-tag">Python</span>
+                                    <span class="skill-tag">Machine Learning</span>
+                                    <span class="skill-tag">Flask</span>
+                                    <span class="skill-tag">Decision Trees</span>
+                                    <span class="skill-tag">HTML/CSS/JS</span>
+                                    <span class="skill-tag">Financial Tech</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Model Features -->
+                <div class="features-section">
+                    <h3>Key Features of Our Decision Tree Model</h3>
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <strong>Credit History Analysis (64.2% importance)</strong>
+                                <p>Primary factor considering Indian credit scoring systems and payment history patterns</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <strong>Education Level Assessment (13.5% importance)</strong>
+                                <p>Considers Indian education system impact on loan approval probability</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <strong>Income Evaluation in INR</strong>
+                                <p>Native support for Indian Rupee income analysis with co-applicant consideration</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <strong>Flexible Loan Terms</strong>
+                                <p>Loan duration input in days with automatic conversion to standard banking terms</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <strong>Property Location Analysis</strong>
+                                <p>Urban, semi-urban, and rural property assessment aligned with Indian geography</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <strong>Employment Type Consideration</strong>
+                                <p>Self-employed vs. salaried analysis relevant to Indian employment patterns</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Technical Specifications -->
+                <div class="tech-specs">
+                    <h3>Technical Specifications</h3>
+                    <div class="specs-grid">
+                        <div class="spec-item">
+                            <label>Algorithm</label>
+                            <span>Decision Tree Classifier</span>
+                        </div>
+                        <div class="spec-item">
+                            <label>Training Data</label>
+                            <span>1,000 loan applications</span>
+                        </div>
+                        <div class="spec-item">
+                            <label>Test Accuracy</label>
+                            <span>89.0%</span>
+                        </div>
+                        <div class="spec-item">
+                            <label>Training Accuracy</label>
+                            <span>91.5%</span>
+                        </div>
+                        <div class="spec-item">
+                            <label>Input Features</label>
+                            <span>11 variables</span>
+                        </div>
+                        <div class="spec-item">
+                            <label>Currency Support</label>
+                            <span>Indian Rupees (₹)</span>
+                        </div>
+                        <div class="spec-item">
+                            <label>Response Time</label>
+                            <span>&lt; 1 second</span>
+                        </div>
+                        <div class="spec-item">
+                            <label>Framework</label>
+                            <span>Flask + scikit-learn</span>
+                        </div>
+                        <div class="spec-item">
+                            <label>Deployment</label>
+                            <span>Render Cloud Platform</span>
+                        </div>
+                        <div class="spec-item">
+                            <label>Developer</label>
+                            <span>Ashwinbarath</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Indian Banking Context -->
+                <div class="banking-context">
+                    <h3>Indian Banking Integration</h3>
+                    <div class="context-grid">
+                        <div class="context-item">
+                            <i class="fas fa-landmark"></i>
+                            <div>
+                                <strong>RBI Guidelines Compliance</strong>
+                                <p>Designed with consideration for Reserve Bank of India lending guidelines and regulations</p>
+                            </div>
+                        </div>
+                        <div class="context-item">
+                            <i class="fas fa-credit-card"></i>
+                            <div>
+                                <strong>CIBIL Score Integration</strong>
+                                <p>Credit history analysis aligned with CIBIL and other Indian credit bureaus</p>
+                            </div>
+                        </div>
+                        <div class="context-item">
+                            <i class="fas fa-rupee-sign"></i>
+                            <div>
+                                <strong>INR Native Processing</strong>
+                                <p>All financial calculations in Indian Rupees with appropriate scaling and validation</p>
+                            </div>
+                        </div>
+                        <div class="context-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <strong>Geographic Considerations</strong>
+                                <p>Property area analysis considering Indian urban, semi-urban, and rural classifications</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Disclaimer -->
+                <div class="disclaimer">
+                    <h3><i class="fas fa-exclamation-triangle"></i> Important Disclaimer</h3>
+                    <p>This system is designed as a decision support tool for educational and demonstration purposes. It should not be the sole basis for actual loan approval or rejection decisions. The predictions are based on historical data patterns and may not account for all factors that Indian financial institutions consider. Always consult with qualified banking professionals and follow official bank procedures for actual loan applications. This system is not affiliated with any specific bank or financial institution.</p>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="contact-info">
+                    <h3>Contact & Developer Information</h3>
+                    <div class="contact-grid">
+                        <div class="contact-item">
+                            <i class="fas fa-user"></i>
+                            <div>
+                                <strong>Developer</strong>
+                                <p>Ashwinbarath</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <strong>Email Contact</strong>
+                                <p><a href="mailto:ashwinbarath1959@gmail.com" class="email-link">ashwinbarath1959@gmail.com</a></p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-code"></i>
+                            <div>
+                                <strong>Technology Stack</strong>
+                                <p>Python, Flask, scikit-learn, HTML5, CSS3, JavaScript</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-calendar"></i>
+                            <div>
+                                <strong>Version</strong>
+                                <p>LoanAI India v2.0 (2025)</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-globe"></i>
+                            <div>
+                                <strong>Deployment</strong>
+                                <p>Hosted on Render Cloud Platform</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-handshake"></i>
+                            <div>
+                                <strong>Support & Queries</strong>
+                                <p>Feel free to reach out for collaboration or questions</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <p>&copy; 2025 LoanAI India Decision Support System. All rights reserved.</p>
+                <p>Designed & Developed by <strong>Ashwinbarath</strong> | Contact: <a href="mailto:ashwinbarath1959@gmail.com" class="footer-email">ashwinbarath1959@gmail.com</a></p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

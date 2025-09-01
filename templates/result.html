@@ -1,0 +1,247 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Decision Result - LoanAI India</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-university"></i>
+                    <h1>LoanAI India</h1>
+                </div>
+                <nav class="navigation">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="/about" class="nav-link">About</a>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Result Section -->
+        <section class="result-section">
+            <div class="result-container">
+                <!-- Applicant Information Header -->
+                <div class="applicant-header">
+                    <h2><i class="fas fa-user"></i> {{ result.applicant_name or 'Applicant' }}</h2>
+                    <p><strong>Application Number:</strong> {{ result.application_number or 'N/A' }}</p>
+                    <p><strong>Date:</strong> {{ moment().format('DD/MM/YYYY HH:mm') if moment else 'Today' }}</p>
+                </div>
+
+                {% if result.status == 'error' %}
+                    <div class="result-card error">
+                        <div class="result-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="result-content">
+                            <h2>Error Occurred</h2>
+                            <p>{{ result.message }}</p>
+                            <div class="error-details">
+                                <p><strong>Error:</strong> {{ result.error }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="result-card {{ 'approved' if result.status == 'Approved' else 'rejected' }}">
+                        <div class="result-icon">
+                            {% if result.status == 'Approved' %}
+                                <i class="fas fa-check-circle"></i>
+                            {% else %}
+                                <i class="fas fa-times-circle"></i>
+                            {% endif %}
+                        </div>
+                        <div class="result-content">
+                            <h2>Loan {{ result.status }}</h2>
+                            <p class="result-message">{{ result.message }}</p>
+                            <div class="confidence-meter">
+                                <div class="confidence-label">Prediction Confidence</div>
+                                <div class="confidence-bar">
+                                    <div class="confidence-fill" style="width: {{ result.confidence }}%"></div>
+                                </div>
+                                <div class="confidence-percentage">{{ result.confidence }}%</div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+
+                <!-- Application Summary -->
+                {% if form_data %}
+                <div class="summary-card">
+                    <h3><i class="fas fa-file-alt"></i> Application Summary</h3>
+                    <div class="summary-grid">
+                        <div class="summary-item">
+                            <label>Applicant Name</label>
+                            <span>{{ form_data.applicant_name }}</span>
+                        </div>
+                        <div class="summary-item">
+                            <label>Application Number</label>
+                            <span>{{ form_data.application_number }}</span>
+                        </div>
+                        <div class="summary-item">
+                            <label>Applicant Profile</label>
+                            <span>{{ form_data.gender }}, {{ 'Married' if form_data.married == 'Yes' else 'Single' }}</span>
+                        </div>
+                        <div class="summary-item">
+                            <label>Education</label>
+                            <span>{{ form_data.education }}</span>
+                        </div>
+                        <div class="summary-item">
+                            <label>Dependents</label>
+                            <span>{{ form_data.dependents }}</span>
+                        </div>
+                        <div class="summary-item">
+                            <label>Employment</label>
+                            <span>{{ 'Self-Employed' if form_data.self_employed == 'Yes' else 'Employed' }}</span>
+                        </div>
+                        <div class="summary-item">
+                            <label>Monthly Income</label>
+                            <span>{{ form_data.applicant_income_formatted or ('₹' + "{:,}".format(form_data.applicant_income|int)) }}</span>
+                        </div>
+                        <div class="summary-item">
+                            <label>Co-applicant Income</label>
+                            <span>{{ form_data.coapplicant_income_formatted or ('₹' + "{:,}".format(form_data.coapplicant_income|int)) }}</span>
+                        </div>
+                        <div class="summary-item">
+                            <label>Total Monthly Income</label>
+                            <span>₹{{ "{:,}".format(form_data.total_income|int) if form_data.total_income else "{:,}".format((form_data.applicant_income|int) + (form_data.coapplicant_income|int)) }}</span>
+                        </div>
+                        <div class="summary-item">
+                            <label>Loan Amount</label>
+                            <span>{{ form_data.loan_amount_formatted or ('₹' + "{:,}".format(form_data.loan_amount|int)) }}</span>
+                        </div>
+                        <div class="summary-item">
+                            <label>Loan Term</label>
+                            <span>{{ form_data.loan_term_formatted or (form_data.loan_term + ' days') }}</span>
+                        </div>
+                        <div class="summary-item">
+                            <label>Property Area</label>
+                            <span>{{ form_data.property_area }}</span>
+                        </div>
+                        <div class="summary-item">
+                            <label>Credit History</label>
+                            <span>{{ 'Good' if form_data.credit_history == '1.0' else 'Poor' }}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Financial Analysis -->
+                {% if form_data.applicant_income and form_data.loan_amount %}
+                <div class="analysis-card">
+                    <h3><i class="fas fa-chart-line"></i> Financial Analysis</h3>
+                    <div class="analysis-grid">
+                        <div class="analysis-item">
+                            <label>Loan-to-Income Ratio (Annual)</label>
+                            {% set annual_income = (form_data.applicant_income|int + form_data.coapplicant_income|int) * 12 %}
+                            {% set loan_amount = form_data.loan_amount|int %}
+                            {% set ratio = (loan_amount / annual_income * 100) if annual_income > 0 else 0 %}
+                            <span class="{{ 'good' if ratio < 300 else 'warning' if ratio < 500 else 'poor' }}">
+                                {{ "%.1f"|format(ratio) }}%
+                            </span>
+                        </div>
+                        <div class="analysis-item">
+                            <label>Annual Income</label>
+                            <span>₹{{ "{:,}".format(annual_income) }}</span>
+                        </div>
+                        <div class="analysis-item">
+                            <label>Loan Duration (Years)</label>
+                            <span>{{ "%.1f"|format(form_data.loan_term|int / 365) }} years</span>
+                        </div>
+                        <div class="analysis-item">
+                            <label>Risk Assessment</label>
+                            <span class="{{ 'good' if ratio < 300 else 'warning' if ratio < 500 else 'poor' }}">
+                                {{ 'Low Risk' if ratio < 300 else 'Medium Risk' if ratio < 500 else 'High Risk' }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endif %}
+
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <a href="/" class="btn btn-primary">
+                        <i class="fas fa-redo"></i>
+                        New Application
+                    </a>
+                    <button onclick="window.print()" class="btn btn-secondary">
+                        <i class="fas fa-print"></i>
+                        Print Result
+                    </button>
+                    <button onclick="downloadPDF()" class="btn btn-secondary">
+                        <i class="fas fa-download"></i>
+                        Download PDF
+                    </button>
+                </div>
+
+                <!-- Recommendations -->
+                {% if result.status == 'Rejected' %}
+                <div class="recommendations-card">
+                    <h3><i class="fas fa-lightbulb"></i> Recommendations for Improvement</h3>
+                    <div class="recommendations-list">
+                        <div class="recommendation">
+                            <i class="fas fa-chart-line"></i>
+                            <div>
+                                <strong>Improve Credit History</strong>
+                                <p>Maintain a good credit score by paying all EMIs and credit card bills on time. Check your CIBIL score regularly.</p>
+                            </div>
+                        </div>
+                        <div class="recommendation">
+                            <i class="fas fa-rupee-sign"></i>
+                            <div>
+                                <strong>Increase Income</strong>
+                                <p>Consider additional income sources, salary increment, or include a co-applicant with good income.</p>
+                            </div>
+                        </div>
+                        <div class="recommendation">
+                            <i class="fas fa-graduation-cap"></i>
+                            <div>
+                                <strong>Educational Qualification</strong>
+                                <p>Higher education levels positively impact loan approval chances in Indian banking.</p>
+                            </div>
+                        </div>
+                        <div class="recommendation">
+                            <i class="fas fa-home"></i>
+                            <div>
+                                <strong>Consider Smaller Loan Amount</strong>
+                                <p>Apply for a loan amount that is 3-4 times your annual income for better approval chances.</p>
+                            </div>
+                        </div>
+                        <div class="recommendation">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <strong>Longer Loan Term</strong>
+                                <p>Consider extending the loan term to reduce EMI burden and improve eligibility.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <p>&copy; 2025 LoanAI Decision Support System. All rights reserved.</p>
+                <p>Designed & Developed by <strong>Ashwinbarath</strong> | Powered by Machine Learning & Flask</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+        // Download PDF functionality
+        function downloadPDF() {
+            // Simple implementation - can be enhanced with proper PDF generation
+            window.print();
+        }
+    </script>
+</body>
+</html>

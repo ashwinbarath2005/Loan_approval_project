@@ -1,0 +1,20 @@
+# Updated compatible requirements for Loan Approval System
+# Tested for Python 3.9-3.11 compatibility
+
+# Core ML and Data Libraries
+numpy==1.25.2
+pandas==2.1.4
+scikit-learn==1.3.2
+
+# Web Framework  
+Flask==3.0.0
+Werkzeug==3.0.1
+Jinja2==3.1.2
+
+# Additional Flask dependencies
+MarkupSafe==2.1.3
+itsdangerous==2.1.2
+click==8.1.7
+
+# Production server
+gunicorn==21.2.0
