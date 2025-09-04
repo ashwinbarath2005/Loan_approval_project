@@ -1,6 +1,4 @@
 # Loan Approval Decision Support System - Flask Application
-# Enhanced with Current Date/Time Display
-# Designed by Ashwinbarath
 
 from flask import Flask, render_template, request, jsonify
 import pickle
@@ -38,7 +36,7 @@ def generate_application_number():
 def get_current_datetime():
     """Get current date and time in Indian timezone"""
     try:
-        # Try to use Indian timezone
+        # Indian timezone
         ist = pytz.timezone('Asia/Kolkata')
         current_time = datetime.now(ist)
     except:
